@@ -20,7 +20,6 @@ if __name__ == '__main__':
     Datasets = ['chameleon', 'crocodile', 'squirrel']
     NumberOfRuns = 10
     Rules = [2, 3, 4, 5, 6, 7, 8, 9, 10]
-    # Rules = [6]
     L2s = [5e-6]
     Lrs = [2e-1]
     Hiddens = [32, 64, 128, 256, 512]
