@@ -62,8 +62,6 @@ if __name__ == '__main__':
                                         args.hidden = hidden
                                         args.lr = lr
                                         args.weight_decay = l2
-
-                                        # Preprocess node features
                                         features, precompute_time = GFS_node_Preprocess(features, adj, Degree, alpha, beta,
                                                                                     gamma)
                                         VCNs = get_antecedent_parameters(features[idx_train], args.rules)
@@ -144,9 +142,6 @@ if __name__ == '__main__':
                                         #     np.max([record_dict[epoch]['loss_test'] for epoch in record_dict])))
                                         best_test_acc = np.max(
                                             [record_dict[epoch]['acc_test'] for epoch in record_dict])
-
-                                        #   写入txt
-                                        # 检查路径
                                         if not os.path.exists("./results/txt/{}".format(args.dataset)):
                                             os.mkdir("./results/txt/{}".format(args.dataset))
                                         record_txt = open(
@@ -163,12 +158,9 @@ if __name__ == '__main__':
                                             line_txt += '\n'
                                             record_txt.write(line_txt)
                                         record_txt.close()
-
-                                        # 追加的时候，判断文件是否存着，如果不存在则添加表头，否则不添加表头
                                         if not os.path.exists(
                                                 './results/csv/{}/{}_{}.csv'.format(args.dataset, args.dataset,
                                                                                     TimeStr)):
-                                            # os.mkdir('./results/csv/{}'.format(args.dataset))
                                             pandas.DataFrame(
                                                 [[args.rules, args.depth_layers, args.weight_decay, args.lr,
                                                   args.hidden, Degree,
